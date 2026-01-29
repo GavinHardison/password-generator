@@ -73,6 +73,10 @@ body {
     border-radius: 8px;
 }
 
+.password-box:active {
+    border: 2px solid #55F991;
+}
+
 #options-div {
     display: flex;
     flex-direction: column;
@@ -85,4 +89,37 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     font-weight: 200px;
+}
+
+#password-length-input {
+    margin-left: 10px;
+    width: 50px;
+    height: 20px;
+    border-radius: 4px;
+    border: none;
+    padding: 2px 5px;
+    font-size: 14px;
+    color: white;
+    background: #2F3E53;
+}
+
+#symbols-input {
+    margin-left: 16px;
+}
+
+#numbers-input {
+    margin-left: 12px;
+}
+
+#symbols-input, #numbers-input {
+    width: 16px;
+    height: 16px;
+    appearance: none;
+    border: none;
+    background: #2F3E53;
+    border-radius: 4px;
+}
+
+#symbols-input:checked, #numbers-input:checked {
+    background: #55F991;
 }

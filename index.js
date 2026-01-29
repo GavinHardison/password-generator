@@ -10,16 +10,32 @@ let characterSet = characters.concat(symbols, numbers)
 let passwordBox1 = document.getElementById("password-box1")
 let passwordBox2 = document.getElementById("password-box2")
 
-let length = 15
-let symbolsBool = true
-let numbersBool = true
+let lengthInput = document.getElementById("password-length-input")
+let checkboxSymbols = document.getElementById("symbols-input")
+let checkboxNumbers = document.getElementById("numbers-input")
+
+let length = lengthInput.valueAsNumber;
+let symbolsChecked = checkboxSymbols.checked
+let numbersChecked = checkboxNumbers.checked
+
+lengthInput.addEventListener('input', function() {
+    length = this.valueAsNumber
+})
+
+checkboxSymbols.addEventListener('change', function() {
+    symbolsChecked = this.checked
+})
+
+checkboxNumbers.addEventListener('change', function() {
+    numbersChecked = this.checked
+})
 
 function randomPassword() {
-    if (symbolsBool && numbersBool) {
+    if (symbolsChecked && numbersChecked) {
         characterSet = characters.concat(symbols, numbers)
-    } else if (symbolsBool && !numbersBool) {
+    } else if (symbolsChecked && !numbersChecked) {
         characterSet = characters.concat(symbols)
-    } else if (!symbolsBool && numbersBool) {
+    } else if (!symbolsChecked && numbersChecked) {
         characterSet = characters.concat(numbers)
     } else {
         characterSet = characters
@@ -41,4 +57,22 @@ function generatePasswords() {
 
     passwordBox1.textContent = password1
     passwordBox2.textContent = password2
+}
+
+const copyPassword1 = async () => {
+    try {
+        const password = document.getElementById("password-box1").innerText
+        await navigator.clipboard.writeText(password)
+    } catch (err) {
+        console.error("Failed to copy: ", err)
+    }
+}
+
+const copyPassword2 = async () => {
+    try {
+        const password = document.getElementById("password-box2").innerText
+        await navigator.clipboard.writeText(password)
+    } catch (err) {
+        console.error("Failed to copy: ", err)
+    }
 }
